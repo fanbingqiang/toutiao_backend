@@ -1,0 +1,33 @@
+# Environment
+.env
+.env.local
+*.env
+
+# IDE
+.idea/
+.vscode/
+
+# Claude settings (local)
+.claude/settings.local.json
+
+# Virtual environment
+.venv/
+venv/
+env/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.so
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Lock files
+*.lock
+
+# Cache
+CACHEDIR.TAG
