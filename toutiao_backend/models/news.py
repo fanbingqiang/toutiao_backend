@@ -1,6 +1,8 @@
 """SQLAlchemy ORM 模型"""
 from datetime import datetime
-from sqlalchemy import ForeignKey, Text, DateTime, func
+from typing import Optional
+
+from sqlalchemy import ForeignKey, Text, DateTime, func, Index, Integer, String
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship
 
 
@@ -90,6 +92,24 @@ class ReloadHistory(Base):
     message: Mapped[str] = mapped_column(default="")
     create_time: Mapped[datetime] = mapped_column(DateTime, server_default=func.now())
 
+class News(Base):
+    __tablename__ = "news"
 
-class Category:
-    pass
+    #高频
+    __table_args__ = (
+        Index('fk_news_category_idx', 'category_id'),
+        Index('idx_publish_time', 'publish_time'),
+    )
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
+    title: Mapped[str] = mapped_column(String(255), nullable=False, comment="新闻标题")
+    description: Mapped[Optional[str]] = mapped_column(String(500), comment="新闻简介")
+    content: Mapped[str] = mapped_column(Text, nullable=False, comment="新闻内容")
+    image: Mapped[Optional[str]] = mapped_column(String(255), comment="封面图片URL")
+    author: Mapped[Optional[str]] = mapped_column(String(50), comment="作者")
+    category_id: Mapped[int] = mapped_column(Integer, ForeignKey('news_category.id'))
+    views: Mapped[int] = mapped_column(Integer, default=0, nullable=False, comment="阅读量")
+    publish_time: Mapped[datetime] = mapped_column(DateTime, default=datetime.now)
+
+    def __repr__(self):
+        return f"<News(id={self.id}, title='{self.title}', views={self.views})>"
