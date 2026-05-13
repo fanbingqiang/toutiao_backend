@@ -41,6 +41,7 @@ async def get_news_detail(news_id: int = Query(...,alias="id"), db: AsyncSession
     related_news = await news.get_related_news(db,news_detail.id,news_detail.category_id)
 
 
+
     return {"code" : 200, "message" : "sucess","data":{"id":news_detail.id,"title":news_detail.title,"content":news_detail.content,"image" : news_detail.image,"author":news_detail.author,"publishTime":news_detail.publishTime,"categoryId":news_detail.category_id,"view":news_detail.views,"relatedNews":related_news}}
 
 
