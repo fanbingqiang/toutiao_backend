@@ -30,7 +30,9 @@
       "Bash(python -c \"import ast; ast.parse\\(open\\('routers/news.py', encoding='utf-8'\\).read\\(\\)\\); print\\('routers/news.py OK'\\)\")",
       "Bash(python -c \"import ast; ast.parse\\(open\\('crud/news.py', encoding='utf-8'\\).read\\(\\)\\); print\\('crud/news.py OK'\\)\")",
       "Bash(python -c \"import ast; ast.parse\\(open\\('models/news.py', encoding='utf-8'\\).read\\(\\)\\); print\\('models/news.py OK'\\)\")",
-      "Bash(python -c ' *)"
+      "Bash(python -c ' *)",
+      "Bash(git config *)",
+      "Bash(git status *)"
     ]
   }
 }
